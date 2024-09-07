@@ -1,0 +1,48 @@
+﻿@model jobsearch.Models.companyinsert
+@{
+    ViewBag.Title = "companypageload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>companypageload</h2>
+<div>
+    @using (@Html.BeginForm("CompanyInsert_Click", "CompanyInsertDB", FormMethod.Post))
+    {
+        <div><label>Company Name</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.cmpnynam)
+            @Html.ValidationMessageFor(m=>m.cmpnynam)
+        </div>
+        <div><label>Company Email</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.cmpnyemil)
+            @Html.ValidationMessageFor(m => m.cmpnyemil)
+        </div>
+        <div><label>Company Phone</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.cmpnyphn)
+            @Html.ValidationMessageFor(m => m.cmpnyphn)
+        </div>
+        <div><label>Company websites</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.cmpnyweb)
+        </div>
+        <div><label>username</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.username)
+        </div>
+        <div><label>password</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.password)
+        </div>
+       
+      
+        <div>
+            <input type="submit" value="Insert" />
+           
+            @Html.DisplayFor(m => m.msg)
+        </div>
+
+    }
+
+</div>

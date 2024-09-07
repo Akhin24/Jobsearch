@@ -1,0 +1,57 @@
+﻿@model jobsearch.Models.jobdeailinsertcls
+@{
+    ViewBag.Title = "jobdetailpageload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>jobdetailpageload</h2>
+
+<div>
+    @using (@Html.BeginForm("jobdetailinsertclick", "jobdetailsdb", FormMethod.Post))
+    {
+        <div><label>Job Title</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.jobtil)
+        </div>
+
+        <div><label>Job description</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.jobdespn)
+        </div>
+
+        <div><label>Job type</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.jobtype)
+        </div>
+
+        <div><label>Last Date</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.lastdate)
+        </div>
+
+
+        <div><label>location</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.location)
+        </div>
+
+        <div><label>Experiance in years</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.expinyears)
+        </div>
+
+
+        <div><label>Salary</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.salary)
+        </div>
+
+        <div><label>Skills</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.skills)
+        </div>
+
+        <input type="submit" value="INSERT" />
+        @Html.DisplayFor(m => m.msg)
+    }
+</div>

@@ -1,0 +1,116 @@
+﻿@model jobsearch.Models.joobsearch
+@{
+    ViewBag.Title = "searchjob_pageload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Career Hunt</h2>
+
+
+<div>
+    @using (@Html.BeginForm("searchjob_click", "searchjob", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td style="padding-left:8PX"><label>SKILLS</label></td>
+                <td>@Html.TextBoxFor(m => m.insertse.skills)</td>
+                <td style="padding-left:8PX"><label>EXPERIENCE</label></td>
+                <td>@Html.TextBoxFor(m => m.insertse.experience)</td>
+                <td style="padding-left:8PX"><label>LOCATION</label></td>
+                <td>@Html.TextBoxFor(m => m.insertse.lcn)</td>
+                <td><input type="submit" value="SEARCH" /></td>
+            </tr>
+        </table>
+    }
+
+</div>
+<div>
+    @using (@Html.BeginForm("searchjob_click", "searchjob", FormMethod.Get))
+    {
+        if (Model != null)
+        {
+            <table class="table">
+                <tr>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(m => m.insertse.cmpnyid)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.insertse.skills)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.insertse.experience)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.insertse.sts)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.insertse.lastdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(m => m.insertse.lcn)
+                    </th>
+
+                </tr>
+                @foreach (var item in Model.selectjob)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelitem => item.cmpnyid)
+                        </td>
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelitem => item.skills)
+                        </td>
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelitem => item.experience)
+                        </td>
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelitem => item.sts)
+                        </td>
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelitem => item.lastdate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelitem => item.lcn)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("APPLAY NOW", "applay_pageload", "applaycv", new { cid = item.cmpnyid, jid = item.jobid }, null)
+                        </td>
+                    </tr>
+
+
+                }
+            </table>
+
+        }
+        else
+        {
+            <div>
+                <script>
+                    alert('no data found');
+                </script>
+            </div>
+        }
+
+
+    }
+    <div>
+        @Html.ActionLink("back to homepage", "loginpageload", "logindb")
+    </div>
+
+
+</div>

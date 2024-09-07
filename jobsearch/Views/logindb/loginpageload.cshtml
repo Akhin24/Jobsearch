@@ -1,0 +1,24 @@
+﻿@model jobsearch.Models.logincls
+@{
+    ViewBag.Title = "loginpageload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>login</h2>
+
+<div>
+    @using (@Html.BeginForm("loginclick", "logindb", FormMethod.Post))
+    {
+        <div><label>USERNAME</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.uname)
+        </div>
+
+        <div><label>password</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.passwd)
+        </div>
+
+        <input type="submit" value="LOGIN" />
+        @Html.DisplayFor(m => m.msg)
+    }

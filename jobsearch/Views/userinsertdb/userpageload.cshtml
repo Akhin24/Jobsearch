@@ -1,0 +1,106 @@
+﻿@model jobsearch.Models.userinsertcls
+@{
+    ViewBag.Title = "userpageload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>userpageload</h2>
+
+<div>
+    @using (@Html.BeginForm("user_click", "userinsertdb", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div><label>name</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.name)
+        </div>
+
+
+        <div><label>age</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.age)
+        </div>
+
+        <div><label>address</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.address)
+        </div>
+
+
+        <div><label>email</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.email)
+        </div>
+
+        <div><label>phone</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.phone)
+        </div>
+
+        <div><label>photo</label></div>
+        <div>
+            @Html.TextBox("file", "", new { Type = "file" })
+        </div>
+
+        <div><label>state</label></div>
+        <div>
+            @Html.DropDownList("SID", new SelectList(ViewBag.selstates, "Value", "Text"), "select state", new { @class = "form-control", @id = "state-ddl" })
+        </div>
+
+
+        <div><label>districts</label></div>
+        <div>
+            <select id="district-ddl" class="form-control" name="DistrictId"></select>
+        </div>
+
+        <div><label>gender</label></div>
+        <div>
+            Male
+            @Html.RadioButtonFor(m => m.gender, "male")
+            Female
+            @Html.RadioButtonFor(m => m.gender, "female")
+        </div>
+
+        <div><label>date of birth</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.dob)
+        </div>
+
+        <div><label>username</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.unam)
+        </div>
+
+
+        <div><label>password</label></div>
+        <div>
+            @Html.TextBoxFor(m => m.pass)
+        </div>
+
+
+        <input type="submit" value="Insert" />
+        @Html.DisplayFor(m => m.msg)
+    }
+
+</div>
+
+
+<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.10.2.js" type="text/javascript"></script>
+<script>
+    $('#district-ddl').append('<option>Select District</option>');
+    $('#state-ddl').change(function () {
+         var stateId = $(this).val();
+         $.ajax({
+             url: '@Url.Action("Getdistrics", "userinsertdb")',
+             //type: 'GET',
+             data: { stateId: stateId },
+             //dataType: 'json',
+             success: function (data) {
+                 $('#district-ddl').empty();
+                 $('#district-ddl').append('<option>Select District</option>');
+                 $.each(data, function (index, item) {
+                     $('#district-ddl').append('<option value="' + item.Value + '">' + item.Text + '</option>');
+                 });
+             }
+         });
+     });
+</script>
